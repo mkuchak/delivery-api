@@ -1,0 +1,49 @@
+{
+  "name": "prisma",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --exit-child --respawn --ignore-watch node_modules --no-notify --clear --quiet -r tsconfig-paths/register ./src/shared/infra/http/server.ts",
+    "build": "rimraf ./dist && npx tsc",
+    "start": "node ./dist/shared/infra/http/server.js",
+    "prisma:run": "prisma migrate dev",
+    "prisma:create": "prisma migrate dev --create-only",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:reset": "prisma migrate reset",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio --browser none"
+  },
+  "prisma": {
+    "schema": "./src/shared/infra/repositories/prisma/schema.prisma"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.11.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^3.11.0",
+    "status-code-enum": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.14.0",
+    "typescript": "^4.6.2"
+  }
+}
