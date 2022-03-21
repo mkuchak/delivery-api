@@ -1,4 +1,4 @@
-import { ICreateAccountDTO } from '@/modules/accounts/dtos/ICreateAccountDTO'
+import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
 
 import { Deliveryman } from '../entities/Deliveryman'
 
