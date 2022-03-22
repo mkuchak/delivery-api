@@ -12,7 +12,7 @@ const initializeWebServer = (customMiddleware?: RequestHandler) => {
     }
 
     const webServerPort =
-      process.env.NODE_ENV === 'test' ? null : process.env.APP_PORT
+      process.env.NODE_ENV === 'test' ? null : process.env.PORT
 
     serverConnection = app.listen(webServerPort, () => {
       resolve(serverConnection.address())

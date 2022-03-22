@@ -7,7 +7,7 @@ const start = async () => {
 start()
   .then(() => {
     console.log(
-      `The app has started successfully on port ${process.env.APP_PORT}`,
+      `The app has started successfully on port ${process.env.PORT}`,
     )
   })
   .catch((error) => {
