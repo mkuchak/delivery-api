@@ -22,7 +22,7 @@ async function ensureDeliverymanAuthenticated (
   const [, accessToken] = authorization.split(' ')
 
   try {
-    const { id } = verify(accessToken, process.env.JWT_SECRET) as IPayload
+    const { id } = verify(accessToken, process.env.JWT_DELIVERYMAN_SECRET) as IPayload
 
     if (id && typeof id === 'number') {
       request.deliveryman_id = id

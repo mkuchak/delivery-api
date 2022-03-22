@@ -22,7 +22,7 @@ async function ensureCustomerAuthenticated (
   const [, accessToken] = authorization.split(' ')
 
   try {
-    const { id } = verify(accessToken, process.env.JWT_SECRET) as IPayload
+    const { id } = verify(accessToken, process.env.JWT_CUSTOMER_SECRET) as IPayload
 
     if (id && typeof id === 'number') {
       request.customer_id = id

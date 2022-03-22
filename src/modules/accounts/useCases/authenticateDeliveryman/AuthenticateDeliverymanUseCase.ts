@@ -27,7 +27,7 @@ class AuthenticateDeliverymanUseCase {
     if (deliveryman && isPasswordCorrect) {
       const { id, email } = deliveryman
 
-      const accessToken = sign({ id, email }, process.env.JWT_SECRET, {
+      const accessToken = sign({ id, email }, process.env.JWT_DELIVERYMAN_SECRET, {
         subject: id.toString(),
         expiresIn: process.env.JWT_EXPIRES_IN,
       })
