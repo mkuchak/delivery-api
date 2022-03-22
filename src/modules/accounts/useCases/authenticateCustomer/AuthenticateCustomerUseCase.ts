@@ -27,7 +27,7 @@ class AuthenticateCustomerUseCase {
     if (customer && isPasswordCorrect) {
       const { id, email } = customer
 
-      const accessToken = sign({ email }, process.env.JWT_SECRET, {
+      const accessToken = sign({ id, email }, process.env.JWT_SECRET, {
         subject: id.toString(),
         expiresIn: process.env.JWT_EXPIRES_IN,
       })
