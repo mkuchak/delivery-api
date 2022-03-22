@@ -12,7 +12,7 @@ const findOpenDeliveriesController = new FindOpenDeliveriesController()
 const deliveriesRoutes = Router()
 
 deliveriesRoutes.post(
-  '/create',
+  '/',
   ensureCustomerAuthenticated,
   createDeliveryController.handle,
 )
