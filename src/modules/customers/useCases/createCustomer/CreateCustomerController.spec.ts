@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
+import StatusCode from 'status-code-enum'
 
 import { initializeWebServer, stopWebServer } from '@/shared/infra/http/setup'
 
@@ -31,5 +32,11 @@ describe('Create customer controller', () => {
     } = await axiosAPIClient.post('/customers', data)
 
     expect(customerId).toBe(1)
+  })
+
+  it('should not create a customer with the same email', async () => {
+    const { status } = await axiosAPIClient.post('/customers', data)
+
+    expect(status).toBe(StatusCode.ClientErrorConflict)
   })
 })

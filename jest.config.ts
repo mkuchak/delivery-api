@@ -1,4 +1,5 @@
 export default {
+  verbose: true,
   forceExit: true,
   clearMocks: true,
   globalSetup: './tests/globalSetup.ts',
