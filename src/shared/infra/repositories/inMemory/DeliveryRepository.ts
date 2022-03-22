@@ -33,6 +33,13 @@ class DeliveryRepository implements IDeliveryRepository {
       (delivery) => delivery.id_deliveryman === deliverymanId,
     )
   }
+
+  async findOpenDeliveries (): Promise<Delivery[]> {
+    return this.repository.filter(
+      (delivery) =>
+        delivery.delivered_at === null && delivery.canceled_at === null,
+    )
+  }
 }
 
 export { DeliveryRepository }

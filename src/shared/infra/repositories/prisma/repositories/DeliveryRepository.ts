@@ -44,6 +44,15 @@ class DeliveryRepository implements IDeliveryRepository {
       },
     })
   }
+
+  async findOpenDeliveries (): Promise<Delivery[]> {
+    return await prisma.deliveries.findMany({
+      where: {
+        delivered_at: null,
+        canceled_at: null,
+      },
+    })
+  }
 }
 
 export { DeliveryRepository }
