@@ -1,5 +1,6 @@
 import { ICreateDeliveryDTO } from '@/modules/deliveries/contracts/ICreateDeliveryDTO'
 import { IDeliveryRepository } from '@/modules/deliveries/contracts/IDeliveryRepository'
+import { IUpdateDeliveryDTO } from '@/modules/deliveries/contracts/IUpdateDeliveryDTO'
 import { Delivery } from '@/modules/deliveries/entities/Delivery'
 
 import { prisma } from '..'
@@ -15,6 +16,17 @@ class DeliveryRepository implements IDeliveryRepository {
     })
 
     return id
+  }
+
+  async update (delivery: IUpdateDeliveryDTO): Promise<void> {
+    await prisma.deliveries.update({
+      where: {
+        id: delivery.id,
+      },
+      data: {
+        ...delivery,
+      },
+    })
   }
 
   async findById (id: number): Promise<Delivery> {

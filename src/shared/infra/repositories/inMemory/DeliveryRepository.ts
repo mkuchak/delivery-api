@@ -1,5 +1,6 @@
 import { ICreateDeliveryDTO } from '@/modules/deliveries/contracts/ICreateDeliveryDTO'
 import { IDeliveryRepository } from '@/modules/deliveries/contracts/IDeliveryRepository'
+import { IUpdateDeliveryDTO } from '@/modules/deliveries/contracts/IUpdateDeliveryDTO'
 import { Delivery } from '@/modules/deliveries/entities/Delivery'
 
 class DeliveryRepository implements IDeliveryRepository {
@@ -16,6 +17,15 @@ class DeliveryRepository implements IDeliveryRepository {
     this.repository.push(newDelivery)
 
     return newDelivery.id
+  }
+
+  async update (delivery: IUpdateDeliveryDTO): Promise<void> {
+    const { id } = delivery
+
+    this.repository[id] = {
+      ...this.repository[id],
+      ...delivery,
+    }
   }
 
   async findById (id: number): Promise<Delivery> {
