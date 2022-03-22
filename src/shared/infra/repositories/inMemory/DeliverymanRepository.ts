@@ -1,6 +1,6 @@
-import { ICreateAccountDTO } from '@/modules/accounts/dtos/ICreateAccountDTO'
+import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IDeliverymanRepository } from '@/modules/deliverymen/contracts/IDeliverymanRepository'
 import { Deliveryman } from '@/modules/deliverymen/entities/Deliveryman'
-import { IDeliverymanRepository } from '@/modules/deliverymen/repositories/IDeliverymanRepository'
 
 class DeliverymanRepository implements IDeliverymanRepository {
   constructor (private repository: Deliveryman[] = []) {}

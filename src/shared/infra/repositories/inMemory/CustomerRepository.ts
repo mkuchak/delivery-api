@@ -1,6 +1,6 @@
-import { ICreateAccountDTO } from '@/modules/accounts/dtos/ICreateAccountDTO'
+import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { ICustomerRepository } from '@/modules/customers/contracts/ICustomerRepository'
 import { Customer } from '@/modules/customers/entities/Customer'
-import { ICustomerRepository } from '@/modules/customers/repositories/ICustomerRepository'
 
 class CustomerRepository implements ICustomerRepository {
   constructor (private repository: Customer[] = []) {}
