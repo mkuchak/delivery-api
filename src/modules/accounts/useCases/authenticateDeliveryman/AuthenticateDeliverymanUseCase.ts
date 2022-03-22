@@ -21,18 +21,19 @@ class AuthenticateDeliverymanUseCase {
   async execute ({ email, password }: IRequest): Promise<IResponse> {
     const deliveryman = await this.deliverymanRepository.findByEmail(email)
 
-    const isPasswordCorrect = await compare(password, deliveryman.password)
+    const isPasswordCorrect =
+      deliveryman && (await compare(password, deliveryman.password))
 
     if (deliveryman && isPasswordCorrect) {
       const { id, email } = deliveryman
 
-      const token = sign({ email }, process.env.JWT_SECRET, {
+      const accessToken = sign({ email }, process.env.JWT_SECRET, {
         subject: id.toString(),
         expiresIn: process.env.JWT_EXPIRES_IN,
       })
 
       return {
-        accessToken: token,
+        accessToken,
       }
     }
 

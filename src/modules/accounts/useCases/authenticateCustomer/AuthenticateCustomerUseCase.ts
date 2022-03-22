@@ -21,18 +21,19 @@ class AuthenticateCustomerUseCase {
   async execute ({ email, password }: IRequest): Promise<IResponse> {
     const customer = await this.customerRepository.findByEmail(email)
 
-    const isPasswordCorrect = await compare(password, customer.password)
+    const isPasswordCorrect =
+      customer && (await compare(password, customer.password))
 
     if (customer && isPasswordCorrect) {
       const { id, email } = customer
 
-      const token = sign({ email }, process.env.JWT_SECRET, {
+      const accessToken = sign({ email }, process.env.JWT_SECRET, {
         subject: id.toString(),
         expiresIn: process.env.JWT_EXPIRES_IN,
       })
 
       return {
-        accessToken: token,
+        accessToken,
       }
     }
 
