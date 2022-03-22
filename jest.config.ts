@@ -7,4 +7,5 @@ export default {
     '^.+\\.(t|j)sx?$': 'esbuild-jest',
   },
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
+  watchPathIgnorePatterns: ['./node_modules', './dist', './coverage'],
 }
