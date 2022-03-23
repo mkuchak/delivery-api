@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken'
 import StatusCode from 'status-code-enum'
 
 import { ICustomerRepository } from '@/modules/customers/contracts/ICustomerRepository'
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 
 interface IRequest {
   email: string;

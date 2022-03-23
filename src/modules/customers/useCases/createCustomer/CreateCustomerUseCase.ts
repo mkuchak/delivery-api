@@ -2,7 +2,7 @@ import { hash } from 'bcrypt'
 import StatusCode from 'status-code-enum'
 
 import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 
 import { ICustomerRepository } from '../../contracts/ICustomerRepository'
 

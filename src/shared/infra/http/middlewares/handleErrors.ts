@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 
 function handleErrors (
   error: Error,

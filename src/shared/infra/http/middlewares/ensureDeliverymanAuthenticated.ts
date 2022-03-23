@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 import StatusCode from 'status-code-enum'
 
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 
 interface IPayload {
   id: number;

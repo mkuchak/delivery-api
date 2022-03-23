@@ -1,6 +1,6 @@
 import StatusCode from 'status-code-enum'
 
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 import { CustomerRepository } from '@/shared/infra/repositories/inMemory/CustomerRepository'
 
 import { CreateCustomerUseCase } from './CreateCustomerUseCase'

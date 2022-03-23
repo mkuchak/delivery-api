@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken'
 import StatusCode from 'status-code-enum'
 
 import { IDeliverymanRepository } from '@/modules/deliverymen/contracts/IDeliverymanRepository'
-import { APIError } from '@/shared/errors/AppError'
+import { APIError } from '@/shared/errors/APIError'
 
 interface IRequest {
   email: string;
