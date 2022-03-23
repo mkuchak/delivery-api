@@ -24,7 +24,6 @@ class DeliveryRepository implements IDeliveryRepository {
 
     this.repository[id] = {
       ...this.repository[id],
-      updated_at: new Date(),
       ...delivery,
     }
   }

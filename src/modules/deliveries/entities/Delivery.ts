@@ -6,8 +6,7 @@ class Delivery {
   started_at?: Date;
   delivered_at?: Date;
   canceled_at?: Date;
-  created_at: Date = new Date();
-  updated_at: Date = new Date();
+  created_at?: Date = new Date();
 }
 
 export { Delivery }
