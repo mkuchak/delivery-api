@@ -32,15 +32,17 @@ model Deliveryman {
 }
 
 model Deliveries {
-  id             Int         @id @default(autoincrement())
+  id             Int          @id @default(autoincrement())
   item_name      String
-  customer       Customer    @relation(fields: [id_customer], references: [id])
+  customer       Customer     @relation(fields: [id_customer], references: [id])
   id_customer    Int
   deliveryman    Deliveryman? @relation(fields: [id_deliveryman], references: [id])
   id_deliveryman Int?
-  started_at     DateTime    @default(now())
+  started_at     DateTime?
   delivered_at   DateTime?
   canceled_at    DateTime?
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @default(now()) @updatedAt
 
   @@map(name: "deliveries")
 }

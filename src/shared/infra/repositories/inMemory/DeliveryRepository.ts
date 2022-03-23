@@ -24,6 +24,7 @@ class DeliveryRepository implements IDeliveryRepository {
 
     this.repository[id] = {
       ...this.repository[id],
+      updated_at: new Date(),
       ...delivery,
     }
   }
@@ -45,10 +46,9 @@ class DeliveryRepository implements IDeliveryRepository {
   }
 
   async findOpenDeliveries (): Promise<Delivery[]> {
-    return this.repository.filter(
-      (delivery) =>
-        delivery.delivered_at === null && delivery.canceled_at === null,
-    )
+    return this.repository
+      .filter((delivery) => delivery.id_deliveryman === null)
+      .sort((a, b) => a.id - b.id)
   }
 }
 
