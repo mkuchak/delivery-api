@@ -1,4 +1,4 @@
-# Delivery App API
+# Delivery API
 
 Back-end project developed using principles such as SOLID, TDD and Clean Architecture.
 
@@ -23,12 +23,44 @@ Good practices have been implemented for unit testing and integration testing fr
 
 </div>
 
+## Easy start app
+
+Run the following commands in the terminal:
+```bash
+# install dependencies
+npm install
+
+# copy the .env file (and edit if needed like port and database url)
+cp .env.example .env
+
+# run the database migrations
+npm run prisma:deploy
+
+# build app and create dist folder
+npm run build
+
+# run the server in production mode
+npm run start
+```
+
+Development commands:
+```bash
+# run the database migrations
+npm run prisma:migrate
+
+# run in development mode 
+npm run dev
+
+# run unit and integration tests (should have Docker and docker-compose installed)
+npm run test
+```
+
 ## Possible improvements / To-do
 
-* Implement accept delivery use case
-* Implement finish or cancel delivery use case
+* Put all application to run in a docker-compose file
+* Create a CI/CD pipeline to run tests and deploy the app
 * Add pagination on open deliveries
-* Implement a mapper on open deliveries
+* Implement a mapper on all deliveries lists
 * Implement singleton on Prisma client
 * Create more variation of tests
 * Create a factory on integration tests
