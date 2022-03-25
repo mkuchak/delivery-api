@@ -1,23 +1,26 @@
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 import { IDeliverymanRepository } from '@/modules/deliverymen/contracts/IDeliverymanRepository'
 import { Deliveryman } from '@/modules/deliverymen/entities/Deliveryman'
 
 class DeliverymanRepository implements IDeliverymanRepository {
   constructor (private repository: Deliveryman[] = []) {}
 
-  async create ({ email, password, name }: ICreateAccountDTO): Promise<number> {
-    const newDeliveryman = new Deliveryman()
+  async save (account: IAccountDTO): Promise<number> {
+    let { id } = account
 
-    Object.assign(newDeliveryman, {
-      id: this.repository.length + 1,
-      email,
-      password,
-      name,
-    })
+    if (!id) {
+      const newDeliveryman = new Deliveryman()
 
-    this.repository.push(newDeliveryman)
+      id = this.repository.length + 1
 
-    return newDeliveryman.id
+      Object.assign(newDeliveryman, { id, ...account })
+
+      this.repository.push(newDeliveryman)
+    } else {
+      this.repository[id] = account
+    }
+
+    return id
   }
 
   async findById (id: number): Promise<Deliveryman> {

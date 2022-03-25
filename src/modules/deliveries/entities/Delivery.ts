@@ -1,5 +1,5 @@
 class Delivery {
-  id: number;
+  id?: number;
   item_name: string;
   id_customer: number;
   id_deliveryman?: number;

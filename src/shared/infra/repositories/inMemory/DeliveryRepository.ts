@@ -1,31 +1,29 @@
-import { ICreateDeliveryDTO } from '@/modules/deliveries/contracts/ICreateDeliveryDTO'
+import { IDeliveryDTO } from '@/modules/deliveries/contracts/IDeliveryDTO'
 import { IDeliveryRepository } from '@/modules/deliveries/contracts/IDeliveryRepository'
-import { IUpdateDeliveryDTO } from '@/modules/deliveries/contracts/IUpdateDeliveryDTO'
 import { Delivery } from '@/modules/deliveries/entities/Delivery'
 
 class DeliveryRepository implements IDeliveryRepository {
   constructor (private repository: Delivery[] = []) {}
 
-  async create (delivery: ICreateDeliveryDTO): Promise<number> {
-    const newDelivery = new Delivery()
+  async save (delivery: IDeliveryDTO): Promise<number> {
+    let { id } = delivery
 
-    Object.assign(newDelivery, {
-      id: this.repository.length + 1,
-      ...delivery,
-    })
+    if (!id) {
+      const newDelivery = new Delivery()
 
-    this.repository.push(newDelivery)
+      id = this.repository.length + 1
 
-    return newDelivery.id
-  }
+      Object.assign(newDelivery, {
+        id,
+        ...delivery,
+      })
 
-  async update (delivery: IUpdateDeliveryDTO): Promise<void> {
-    const { id } = delivery
-
-    this.repository[id] = {
-      ...this.repository[id],
-      ...delivery,
+      this.repository.push(newDelivery)
+    } else {
+      this.repository[id] = delivery
     }
+
+    return delivery.id
   }
 
   async findById (id: number): Promise<Delivery> {

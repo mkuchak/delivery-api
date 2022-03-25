@@ -1,7 +1,7 @@
 import { hash } from 'bcrypt'
 import StatusCode from 'status-code-enum'
 
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 import { APIError } from '@/shared/errors/APIError'
 
 import { ICustomerRepository } from '../../contracts/ICustomerRepository'
@@ -9,7 +9,7 @@ import { ICustomerRepository } from '../../contracts/ICustomerRepository'
 class CreateCustomerUseCase {
   constructor (private customerRepository: ICustomerRepository) {}
 
-  async execute ({ email, password, name }: ICreateAccountDTO): Promise<number> {
+  async execute ({ email, password, name }: IAccountDTO): Promise<number> {
     const customer = await this.customerRepository.findByEmail(email)
 
     if (customer) {
@@ -21,7 +21,7 @@ class CreateCustomerUseCase {
 
     const hashPassword = await hash(password, 10)
 
-    const newCustomerId = await this.customerRepository.create({
+    const newCustomerId = await this.customerRepository.save({
       email,
       password: hashPassword,
       name,

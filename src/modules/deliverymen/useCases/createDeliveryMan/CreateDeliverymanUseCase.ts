@@ -1,7 +1,7 @@
 import { hash } from 'bcrypt'
 import StatusCode from 'status-code-enum'
 
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 import { APIError } from '@/shared/errors/APIError'
 
 import { IDeliverymanRepository } from '../../contracts/IDeliverymanRepository'
@@ -9,7 +9,7 @@ import { IDeliverymanRepository } from '../../contracts/IDeliverymanRepository'
 class CreateDeliverymanUseCase {
   constructor (private deliverymanRepository: IDeliverymanRepository) {}
 
-  async execute ({ email, password, name }: ICreateAccountDTO): Promise<number> {
+  async execute ({ email, password, name }: IAccountDTO): Promise<number> {
     const deliveryman = await this.deliverymanRepository.findByEmail(email)
 
     if (deliveryman) {
@@ -21,7 +21,7 @@ class CreateDeliverymanUseCase {
 
     const hashPassword = await hash(password, 10)
 
-    const newDeliverymanId = await this.deliverymanRepository.create({
+    const newDeliverymanId = await this.deliverymanRepository.save({
       email,
       password: hashPassword,
       name,

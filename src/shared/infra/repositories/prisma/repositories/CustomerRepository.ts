@@ -1,4 +1,4 @@
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 import { ICustomerRepository } from '@/modules/customers/contracts/ICustomerRepository'
 import { Customer } from '@/modules/customers/entities/Customer'
 
@@ -7,13 +7,13 @@ import { prisma } from '..'
 class CustomerRepository implements ICustomerRepository {
   constructor () {}
 
-  async create ({ email, password, name }: ICreateAccountDTO): Promise<number> {
-    const { id } = await prisma.customer.create({
-      data: {
-        email,
-        password,
-        name,
+  async save (account: IAccountDTO): Promise<number> {
+    const { id } = await prisma.customer.upsert({
+      where: {
+        email: account.email,
       },
+      update: account,
+      create: account,
     })
 
     return id

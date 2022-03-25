@@ -1,6 +1,5 @@
-import { ICreateDeliveryDTO } from '@/modules/deliveries/contracts/ICreateDeliveryDTO'
+import { IDeliveryDTO } from '@/modules/deliveries/contracts/IDeliveryDTO'
 import { IDeliveryRepository } from '@/modules/deliveries/contracts/IDeliveryRepository'
-import { IUpdateDeliveryDTO } from '@/modules/deliveries/contracts/IUpdateDeliveryDTO'
 import { Delivery } from '@/modules/deliveries/entities/Delivery'
 
 import { prisma } from '..'
@@ -8,25 +7,16 @@ import { prisma } from '..'
 class DeliveryRepository implements IDeliveryRepository {
   constructor () {}
 
-  async create (delivery: ICreateDeliveryDTO): Promise<number> {
-    const { id } = await prisma.deliveries.create({
-      data: {
-        ...delivery,
+  async save (delivery: IDeliveryDTO): Promise<number> {
+    const { id } = await prisma.deliveries.upsert({
+      where: {
+        id: delivery.id ?? -1,
       },
+      update: delivery,
+      create: delivery,
     })
 
     return id
-  }
-
-  async update (delivery: IUpdateDeliveryDTO): Promise<void> {
-    await prisma.deliveries.update({
-      where: {
-        id: delivery.id,
-      },
-      data: {
-        ...delivery,
-      },
-    })
   }
 
   async findById (id: number): Promise<Delivery> {

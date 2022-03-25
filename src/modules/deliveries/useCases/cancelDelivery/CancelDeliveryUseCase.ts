@@ -49,7 +49,7 @@ class CancelDeliveryUseCase {
 
     delivery.canceled_at = new Date()
 
-    await this.deliveryRepository.update(delivery)
+    await this.deliveryRepository.save(delivery)
   }
 }
 

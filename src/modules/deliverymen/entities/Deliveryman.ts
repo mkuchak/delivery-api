@@ -1,10 +1,10 @@
 class Deliveryman {
-  id: number;
+  id?: number;
   email: string;
   password: string;
   name?: string;
-  created_at: Date = new Date();
-  updated_at: Date = new Date();
+  created_at?: Date = new Date();
+  updated_at?: Date = new Date();
 }
 
 export { Deliveryman }

@@ -1,23 +1,26 @@
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 import { ICustomerRepository } from '@/modules/customers/contracts/ICustomerRepository'
 import { Customer } from '@/modules/customers/entities/Customer'
 
 class CustomerRepository implements ICustomerRepository {
   constructor (private repository: Customer[] = []) {}
 
-  async create ({ email, password, name }: ICreateAccountDTO): Promise<number> {
-    const newCustomer = new Customer()
+  async save (account: IAccountDTO): Promise<number> {
+    let { id } = account
 
-    Object.assign(newCustomer, {
-      id: this.repository.length + 1,
-      email,
-      password,
-      name,
-    })
+    if (!id) {
+      const newCustomer = new Customer()
 
-    this.repository.push(newCustomer)
+      id = this.repository.length + 1
 
-    return newCustomer.id
+      Object.assign(newCustomer, { id, ...account })
+
+      this.repository.push(newCustomer)
+    } else {
+      this.repository[id] = account
+    }
+
+    return id
   }
 
   async findById (id: number): Promise<Customer> {

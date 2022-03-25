@@ -1,9 +1,9 @@
-import { ICreateAccountDTO } from '@/modules/accounts/contracts/ICreateAccountDTO'
+import { IAccountDTO } from '@/modules/accounts/contracts/IAccountDTO'
 
 import { Deliveryman } from '../entities/Deliveryman'
 
 interface IDeliverymanRepository {
-  create(account: ICreateAccountDTO): Promise<number>;
+  save(account: IAccountDTO): Promise<number>;
   findById(id: number): Promise<Deliveryman>;
   findByEmail(email: string): Promise<Deliveryman>;
 }

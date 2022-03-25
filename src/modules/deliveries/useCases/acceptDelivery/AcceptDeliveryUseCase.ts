@@ -29,7 +29,7 @@ class AcceptDeliveryUseCase {
     delivery.id_deliveryman = deliverymanId
     delivery.started_at = new Date()
 
-    await this.deliveryRepository.update(delivery)
+    await this.deliveryRepository.save(delivery)
   }
 }
 

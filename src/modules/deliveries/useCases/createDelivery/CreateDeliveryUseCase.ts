@@ -9,7 +9,8 @@ class CreateDeliveryUseCase {
   constructor (private deliveryRepository: IDeliveryRepository) {}
 
   async execute (data: IRequest): Promise<number> {
-    const newDeliveryId = await this.deliveryRepository.create({
+    console.log(data)
+    const newDeliveryId = await this.deliveryRepository.save({
       item_name: data.itemName,
       id_customer: data.customerId,
     })

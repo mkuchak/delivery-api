@@ -1,10 +1,8 @@
 import { Delivery } from '../entities/Delivery'
-import { ICreateDeliveryDTO } from './ICreateDeliveryDTO'
-import { IUpdateDeliveryDTO } from './IUpdateDeliveryDTO'
+import { IDeliveryDTO } from './IDeliveryDTO'
 
 interface IDeliveryRepository {
-  create(delivery: ICreateDeliveryDTO): Promise<number>;
-  update(delivery: IUpdateDeliveryDTO): Promise<void>;
+  save(delivery: IDeliveryDTO): Promise<number>;
   findById(id: number): Promise<Delivery>;
   findByCustomerId(customerId: number): Promise<Delivery[]>;
   findByDeliverymanId(deliverymanId: number): Promise<Delivery[]>;
